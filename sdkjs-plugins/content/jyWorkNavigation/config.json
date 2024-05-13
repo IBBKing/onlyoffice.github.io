@@ -1,10 +1,10 @@
 {
-    "name" : "Example work with content controls navigation",
-    "guid" : "asc.{C36DDFB5-08F0-4A68-B829-5FB1F7D49728}",
+    "name" : "jianyi Example work with content controls navigation",
+    "guid" : "asc.{61D03D66-0490-29FB-F4F7-32C2BDBAB009}",
 
     "variations" : [
         {
-            "description" : "Example work with content controls navigation",
+            "description" : "jianyi Example work with content controls navigation",
             "url"         : "index.html",
 
             "icons": [ "resources/light/icon.png", "resources/light/icon@2x.png" ],
