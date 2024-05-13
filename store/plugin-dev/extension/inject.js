@@ -1,5 +1,5 @@
 (function(window, undefined) {
-	var URL_TO_PLUGIN = "https://ibbking.github.io/onlyoffice.github.io/sdkjs-plugins/content/jyautocomplete/";
+	var URL_TO_PLUGIN = "https://ibbking.github.io/onlyoffice.github.io/sdkjs-plugins/content/jyWorkNavigation/";
 	
 	var xhrObj = new XMLHttpRequest();
 	xhrObj.open('GET', URL_TO_PLUGIN + "config.json", false);
