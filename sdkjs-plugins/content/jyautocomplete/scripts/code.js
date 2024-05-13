@@ -136,7 +136,7 @@
 		// 	index++;
 		// }
 		$.ajax({
-			url:'/jy-comp/pws/cmsctr/search/do_cms_help_type_search',
+			url:'https://gw-test.jianyiqifu.com/jy-comp/pws/cmsctr/search/do_cms_help_type_search',
 			method:'POST',
 			data: {typeName:text},
 			success:function(data){
