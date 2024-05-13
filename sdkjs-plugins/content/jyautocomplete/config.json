@@ -1,13 +1,13 @@
 {
-	"name": "Autocomplete",
+	"name": "JyAutocomplete",
 	"nameLocale": {
-		"ru": "Autocomplete",
-		"fr": "Autocomplete",
-		"es": "Autocomplete",
-		"pt-BR": "Preenchimento automático",
-		"de": "Autocomplete"
+		"ru": "JyAutocomplete",
+		"fr": "JyAutocomplete",
+		"es": "JyAutocomplete",
+		"pt-BR": "Preenchimento jyautomático",
+		"de": "JyAutocomplete"
 	},
-	"guid" : "asc.{A103601F-FDA0-418A-BC37-A514031894C0}",
+	"guid" : "asc.{3CECD7A0-1A33-A50B-E0EB-44E7BCDA07DA}",
 	"version" : "1.0.0",
 
 	"variations" : [
