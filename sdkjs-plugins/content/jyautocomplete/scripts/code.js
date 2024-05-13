@@ -119,13 +119,13 @@
 		var textFound = text.toLowerCase();
 
 		var start = 0;
-		var end = g_dictionary.length - 1;
+		// var end = g_dictionary.length - 1;
 		var index = 0;
 
 		
 
 		var ret = [];
-		end = g_dictionary.length;
+		// end = g_dictionary.length;
 		// while (index < end)
 		// {
 		// 	var testRec = g_dictionary[index++];
