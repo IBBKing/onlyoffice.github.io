@@ -66,6 +66,18 @@
 					var oParagraph = oDocEls[index];
 					var oText = oParagraph.GetText()
 					console.log(findMatches(oText))
+					findMatches(oText).forEach(function (item, index) {
+						var comment = new window.Asc.common.CComment(
+							'此处应填写内容' + index + '',
+							'简蚁制标机器人',
+							item.start,
+							item.end
+						);
+						Api.AddComment(comment);
+					})
+					// if(findMatches(oText).length > 0){
+					// 	Api.AddComment(oText, "此处应填写内容", "简蚁制标机器人", "uid-1");
+					// }
 				}
 			}
 			// export variable to plugin scope
