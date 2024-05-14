@@ -31,6 +31,7 @@
 		isInit = true;
 		var that = this
 		$('#checkDocId').click(function () {
+			console.log('点击事件');
 			function findEmptyColonPositions (text) {
 				const emptyColonPositions = [];
 				const regex = /:(.{15})/g;
