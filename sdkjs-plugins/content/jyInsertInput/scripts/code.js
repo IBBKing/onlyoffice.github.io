@@ -21,17 +21,14 @@
 	var fClickLabel = false;
 	var fClickBtnCur = false;
 	var isInit = false;
-	window.Add = function (value,len = 10) {
+	window.Add = function (value) {
 		if (!isInit)
 			return;
 
 		// serialize command as text
 		var oDocument = Api.GetDocument();
-		var oTextForm = Api.CreateTextForm({ "key": "Personal information", "tip": "Enter your first name", "required": true, "placeholder": "First name", "comb": true, "maxCharacters": len, "cellWidth": 3, "multiLine": false, "autoFit": true });
-		var oParagraph = oDocument.GetElement(0);
-		oParagraph.AddElement(oTextForm);
-		window.Asc.plugin.executeMethod("PasteText", [value]);
-		
+		var oTextForm = {"key": "EntName", "tip": "请输入内容",  "placeholder": "海康威视","multiLine":false,"autoFit":true};
+		oDocument.InsertTextForm(oTextForm)
 	};
 
 	window.Asc.plugin.init = function (text) {
