@@ -30,7 +30,7 @@
 		// var oTextForm = { "key": "EntName", "tip": "请输入内容", "placeholder": "海康威视", "multiLine": false, "autoFit": true };
 		// oDocument.InsertTextForm(oTextForm)
 		var sScript = "var oDocument = Api.GetDocument();";
-		sScript += "var oTextForm = { 'key': '" + key + "', 'tip': \'" + "请输入" + value + "\', 'placeholder': '" + value + "', 'value':'" + value + "' 'multiLine': false, 'autoFit': true };";
+		sScript += "var oTextForm = { 'key': '" + key + "', 'tip': \'" + "请输入" + value + "\', 'placeholder': '" + value + "', 'multiLine': false, 'autoFit': true };";
 		sScript += "oDocument.InsertTextForm(oTextForm);";
 		window.Asc.plugin.info.recalculate = true;
 		window.Asc.plugin.executeCommand("command", sScript);
@@ -39,30 +39,30 @@
 	window.Asc.plugin.init = function (text) {
 		isInit = true
 		//event "init" for plugin
-		document.getElementById("divS").innerHTML = text.replace(/\n/g, "<br>");
+		// document.getElementById("divS").innerHTML = text.replace(/\n/g, "<br>");
 
-		document.getElementById("buttonIDPaste").onclick = function () {
-			//method for paste text into document
-			window.Asc.plugin.executeMethod("PasteText", ["海康威视"]);
+		// document.getElementById("buttonIDPaste").onclick = function () {
+		// 	//method for paste text into document
+		// 	window.Asc.plugin.executeMethod("PasteText", ["海康威视"]);
 
-		};
+		// };
 
 
 
-		document.getElementById("buttonIDGetAll").onclick = function () {
-			//method for get all content controls
-			window.Asc.plugin.executeMethod("GetAllContentControls");
-			fBtnGetAll = true;
+		// document.getElementById("buttonIDGetAll").onclick = function () {
+		// 	//method for get all content controls
+		// 	window.Asc.plugin.executeMethod("GetAllContentControls");
+		// 	fBtnGetAll = true;
 
-		};
+		// };
 
-		document.getElementById("buttonIDShowCurrent").onclick = function () {
+		// document.getElementById("buttonIDShowCurrent").onclick = function () {
 
-			fClickBtnCur = true;
-			//menthod for get current content control (where is the cursor located)
-			window.Asc.plugin.executeMethod("GetCurrentContentControl");
+		// 	fClickBtnCur = true;
+		// 	//menthod for get current content control (where is the cursor located)
+		// 	window.Asc.plugin.executeMethod("GetCurrentContentControl");
 
-		};
+		// };
 
 		// if (!flagInit) {
 		// 	flagInit = true;
