@@ -32,28 +32,44 @@
 		var that = this
 		$('#checkDocId').click(function () {
 			console.log('点击事件');
-			function findEmptyColonPositions (text) {
-				const emptyColonPositions = [];
-				const regex = /:(.{15})/g;
 
-				let match;
-				while ((match = regex.exec(text)) !== null) {
-					const textAfterColon = match[1].trim();
-					if (textAfterColon === '') {
-						const emptyColonPosition = match.index + match[0].indexOf(':') + 1;
-						emptyColonPositions.push(emptyColonPosition);
-					}
-				}
-
-				return emptyColonPositions;
-			}
 			function addAnnotations () {
+				function findMatches (input) {
+					const matches = [];
+					const regex1 = /([a-zA-Z\u4e00-\u9fa5]+[\u3002\uff1a\uff1b\uff0c\u201c\u201d\uff1f\u201a\u2018\u201b:,;?!"](?=[^a-zA-Z\u4e00-\u9fa5\pL\p{sc=Han}]|$)|[\u3002\uff1a\uff1b\uff0c\u201c\u201d\uff1f\u201a\u2018\u201b:,;?!"]\b[^a-zA-Z\u4e00-\u9fa5\pL\p{sc=Han}]+)(?:[^a-zA-Z\u4e00-\u9fa5\pL\p{sc=Han}]|$){0,10}/g;
+					const regex2 = /_{6,}(?=\s|$)(?![\S_])/g;
+
+
+
+
+					let match;
+
+					// 规则1: 中英文标点符号后的位置没有在十个字符内出现中英文的字符
+					while ((match = regex1.exec(input)) !== null) {
+						matches.push({
+							start: match.index,
+							end: match.index + match[0].length,
+							text: match[0]
+						});
+					}
+
+					// 规则2: 出现连续的 6 个及以上下划线,但是如果是____有东西__ 这样就不算
+					while ((match = regex2.exec(input)) !== null) {
+						matches.push({
+							start: match.index,
+							end: match.index + match[0].length,
+							text: match[0]
+						});
+					}
+
+					return matches;
+				}
 				var oDocument = Api.GetDocument();
 				var oDocEls = oDocument.GetContent(false);
 				for (var index in oDocEls) {
 					var oParagraph = oDocEls[index];
 					var oText = oParagraph.GetText()
-					console.log(findEmptyColonPositions(oText))
+					console.log(findMatches(oText))
 				}
 			}
 			// export variable to plugin scope
