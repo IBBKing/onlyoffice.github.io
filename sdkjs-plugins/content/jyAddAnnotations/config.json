@@ -9,12 +9,15 @@
 
             "icons"           : ["resources/img/icon.png", "resources/img/icon@2x.png"],
             "isViewer"        : false,
-            "EditorsSupport"  : ["word", "slide", "cell"],
-            "isVisual"        : false,
+            "EditorsSupport"  : ["word"],
+
+            "isVisual"        : true,
             "isModal"         : false,
-            "isInsideMode"    : false,
+            "isInsideMode"    : true,
 						"isSystem"        : true,
             "initDataType"    : "none",
+            "initData"        : "",
+
             "isUpdateOleOnResize" : false,
 
             "buttons"        : [ ]

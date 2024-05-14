@@ -15,50 +15,47 @@
  * limitations under the License.
  *
  */
-(function (OnlyOfficeEmptyColonPlugin) {
-	// 初始化 OnlyOffice 插件
-	if (window.Asc.plugin) {
-			window.Asc.plugin.init = function () {
-					// 注册插件
-					window.Asc.plugin.executeCommand = function (commandName, callback) {
-							if (commandName === 'checkEmptyColon') {
-									checkEmptyColon();
-							}
-					};
-			};
-	}
+(function (window, undefined) {
 
-	// 检查冒号后的文本是否为空，并为为空的文本添加批注
-	function checkEmptyColon() {
-			var doc = window.Asc.plugin.doc;
+	var isInit = false;
+	window.check = function (field_type) {
+		if (!isInit)
+			return;
+		// function findEmptyColonPositions (text) {
+		// 	const emptyColonPositions = [];
+		// 	const regex = /:(.{15})/g;
 
-			// 正则表达式，用于匹配冒号后的文本
-			var regex = /:(.{0,15})/g;
+		// 	let match;
+		// 	while ((match = regex.exec(text)) !== null) {
+		// 		const textAfterColon = match[1].trim();
+		// 		if (textAfterColon === '') {
+		// 			const emptyColonPosition = match.index + match[0].indexOf(':') + 1;
+		// 			emptyColonPositions.push(emptyColonPosition);
+		// 		}
+		// 	}
 
-			// 遍历所有段落
-			doc.GetBody().GetContent().forEach(function (paragraph) {
-					// 获取段落中的文本
-					var text = paragraph.GetText();
-					var match;
+		// 	return emptyColonPositions;
+		// }
+		// serialize command as text
+		var sScript = "var oDoc = Api.GetDocument();";
+		sScript += "var oDocEls = oDoc.GetContent(false);";
+		sScript += "for(var index in oDocEls){var oParagraph = oDocEls[index];var oText = oParagraph.GetText();console.log(findEmptyColonPositions(oText))}";
+		sScript +="function findEmptyColonPositions (text) {const emptyColonPositions = [];const regex = /:(.{15})/g;let match;while ((match = regex.exec(text)) !== null) {const textAfterColon = match[1].trim();if (textAfterColon === '') {const emptyColonPosition = match.index + match[0].indexOf(':') + 1;emptyColonPositions.push(emptyColonPosition);}}return emptyColonPositions;}"
+		window.Asc.plugin.info.recalculate = true;
+		window.Asc.plugin.executeCommand("command", sScript);
+	};
+	window.Mark = function () {
+		return window.Add('${DynamicTable}');
+	};
 
-					// 使用正则表达式匹配冒号后的文本
-					while ((match = regex.exec(text)) !== null) {
-							var textAfterColon = match[1].trim();
+	window.Asc.plugin.init = function () {
+		isInit = true;
 
-							// 如果冒号后的文本为空，则添加批注
-							if (textAfterColon === '') {
-									var colonPosition = match.index + match[0].indexOf(':');
-									var comment = new window.Asc.common.CComment(
-											'',
-											'This text after colon is empty',
-											colonPosition,
-											colonPosition + 1
-									);
+	};
 
-									// 将批注添加到文档中
-									doc.AddComment(comment);
-							}
-					}
-			});
-	}
-})(window.OnlyOfficeEmptyColonPlugin || (window.OnlyOfficeEmptyColonPlugin = {}));
+	window.Asc.plugin.button = function (id) {
+		if (-1 == id)
+			this.executeCommand("close", "");
+	};
+
+})(window, undefined);
