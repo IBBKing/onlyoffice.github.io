@@ -59,44 +59,15 @@
 
 		};
 
-		if (!flagInit) {
-			flagInit = true;
-			//method for get all content controls
-			window.Asc.plugin.executeMethod("GetAllContentControls");
-			// document.getElementById("buttonIDGetAll").click();
-		}
+		// if (!flagInit) {
+		// 	flagInit = true;
+		// 	//method for get all content controls
+		// 	window.Asc.plugin.executeMethod("GetAllContentControls");
+		// 	// document.getElementById("buttonIDGetAll").click();
+		// }
 	};
 
-	addLabel = (returnValue, element) => {
-		$(element).append(
-			$('<label>', {
-				id: returnValue.InternalId,
-				for: element,
-				class: 'label-info',
-				text: returnValue.InternalId + "	" + (returnValue.Id || 'null'),
-				on: {
-					click: function () {
-						fClickLabel = true;
-						$('.label-selected').removeClass('label-selected');
-						$(this).addClass('label-selected');
-						if (element === "#divG") {
-							//method for select content control by id
-							window.Asc.plugin.executeMethod("SelectContentControl", [this.id]);
-						} else {
-							//method for move cursor to content control with specified id
-							window.Asc.plugin.executeMethod("MoveCursorToContentControl", [this.id, true]);
-						}
-					},
-					mouseover: function () {
-						$(this).addClass('label-hovered');
-					},
-					mouseout: function () {
-						$(this).removeClass('label-hovered');
-					}
-				}
-			})
-		);
-	};
+	
 
 	window.Asc.plugin.button = function () {
 		this.executeCommand("close", "");
@@ -104,14 +75,14 @@
 
 
 
-	window.Asc.plugin.event_onTargetPositionChanged = function () {
-		//event change cursor position
-		//all events are specified in the config file in the "events" field
-		if (!fClickLabel) {
-			//menthod for get current content control (where is the cursor located)
-			window.Asc.plugin.executeMethod("GetCurrentContentControl");
-		}
-		fClickLabel = false;
-	};
+	// window.Asc.plugin.event_onTargetPositionChanged = function () {
+	// 	//event change cursor position
+	// 	//all events are specified in the config file in the "events" field
+	// 	if (!fClickLabel) {
+	// 		//menthod for get current content control (where is the cursor located)
+	// 		window.Asc.plugin.executeMethod("GetCurrentContentControl");
+	// 	}
+	// 	fClickLabel = false;
+	// };
 
 })(window, undefined);
