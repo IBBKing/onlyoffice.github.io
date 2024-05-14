@@ -1,10 +1,10 @@
 {
-    "name" : "Invoices",
-    "guid" : "asc.{6B6715E5-A558-4F70-8058-40704CD659CF}",
+    "name" : "jy add annotations",
+    "guid" : "asc.{CAC11982-DEAE-6CFE-A8FB-6DBD20432191}",
 
     "variations" : [
         {
-            "description" : "invoices",
+            "description" : "jy add annotations",
             "url"         : "index.html",
 
             "icons"           : ["resources/img/icon.png", "resources/img/icon@2x.png"],
