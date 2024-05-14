@@ -21,28 +21,7 @@
 	window.check = function (field_type) {
 		if (!isInit)
 			return;
-		// function findEmptyColonPositions (text) {
-		// 	const emptyColonPositions = [];
-		// 	const regex = /:(.{15})/g;
 
-		// 	let match;
-		// 	while ((match = regex.exec(text)) !== null) {
-		// 		const textAfterColon = match[1].trim();
-		// 		if (textAfterColon === '') {
-		// 			const emptyColonPosition = match.index + match[0].indexOf(':') + 1;
-		// 			emptyColonPositions.push(emptyColonPosition);
-		// 		}
-		// 	}
-
-		// 	return emptyColonPositions;
-		// }
-		// serialize command as text
-		var sScript = "var oDoc = Api.GetDocument();";
-		sScript += "var oDocEls = oDoc.GetContent(false);";
-		sScript += "for(var index in oDocEls){var oParagraph = oDocEls[index];var oText = oParagraph.GetText();console.log(findEmptyColonPositions(oText))}";
-		sScript +="function findEmptyColonPositions (text) {const emptyColonPositions = [];const regex = /:(.{15})/g;let match;while ((match = regex.exec(text)) !== null) {const textAfterColon = match[1].trim();if (textAfterColon === '') {const emptyColonPosition = match.index + match[0].indexOf(':') + 1;emptyColonPositions.push(emptyColonPosition);}}return emptyColonPositions;}"
-		window.Asc.plugin.info.recalculate = true;
-		window.Asc.plugin.executeCommand("command", sScript);
 	};
 	window.Mark = function () {
 		return window.Add('${DynamicTable}');
@@ -50,7 +29,35 @@
 
 	window.Asc.plugin.init = function () {
 		isInit = true;
+		var that = this
+		$('#checkDocId').click(function () {
+			function findEmptyColonPositions (text) {
+				const emptyColonPositions = [];
+				const regex = /:(.{15})/g;
 
+				let match;
+				while ((match = regex.exec(text)) !== null) {
+					const textAfterColon = match[1].trim();
+					if (textAfterColon === '') {
+						const emptyColonPosition = match.index + match[0].indexOf(':') + 1;
+						emptyColonPositions.push(emptyColonPosition);
+					}
+				}
+
+				return emptyColonPositions;
+			}
+			function addAnnotations () {
+				var oDocument = Api.GetDocument();
+				var oParagraph = oDocument.GetContent(false);
+				for (var index in oDocEls) {
+					var oParagraph = oDocEls[index];
+					var oText = oParagraph.GetText()
+					console.log(findEmptyColonPositions(oText))
+				}
+			}
+			// export variable to plugin scope
+			that.callCommand(addAnnotations, true);
+		})
 	};
 
 	window.Asc.plugin.button = function (id) {
