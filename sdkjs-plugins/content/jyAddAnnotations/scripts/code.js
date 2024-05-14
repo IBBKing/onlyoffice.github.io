@@ -43,8 +43,9 @@
 		};
 		// 检查冒号后的文本是否为空，并为为空的文本添加批注
 		function checkEmptyColon () {
+			console.log('是否执行到这');
 			var doc = window.Asc.plugin.doc;
-
+			console.log(doc,48);
 			// 正则表达式，用于匹配冒号后的文本
 			var regex = /:(.{0,15})/g;
 

@@ -13,8 +13,8 @@
 
             "isVisual"        : true,
             "isModal"         : false,
-            "isInsideMode"    : true,
-
+            "isInsideMode"    : false,
+						"isSystem"        : true,
             "initDataType"    : "none",
             "initData"        : "",
 
