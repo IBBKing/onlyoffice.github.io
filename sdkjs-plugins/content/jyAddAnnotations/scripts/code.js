@@ -49,7 +49,7 @@
 			}
 			function addAnnotations () {
 				var oDocument = Api.GetDocument();
-				var oParagraph = oDocument.GetContent(false);
+				var oDocEls = oDocument.GetContent(false);
 				for (var index in oDocEls) {
 					var oParagraph = oDocEls[index];
 					var oText = oParagraph.GetText()
