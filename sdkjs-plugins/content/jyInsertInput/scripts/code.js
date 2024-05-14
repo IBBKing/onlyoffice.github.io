@@ -26,9 +26,14 @@
 			return;
 
 		// serialize command as text
-		var oDocument = Api.GetDocument();
-		var oTextForm = {"key": "EntName", "tip": "请输入内容",  "placeholder": "海康威视","multiLine":false,"autoFit":true};
-		oDocument.InsertTextForm(oTextForm)
+		// var oDocument = Api.GetDocument();
+		// var oTextForm = { "key": "EntName", "tip": "请输入内容", "placeholder": "海康威视", "multiLine": false, "autoFit": true };
+		// oDocument.InsertTextForm(oTextForm)
+		var sScript = "var oDocument = Api.GetDocument();";
+		sScript += 'var oTextForm = { "key": "EntName", "tip": "请输入内容", "placeholder": "海康威视", "multiLine": false, "autoFit": true };';
+		sScript += "oDocument.InsertTextForm(oTextForm);";
+		window.Asc.plugin.info.recalculate = true;
+		window.Asc.plugin.executeCommand("command", sScript);
 	};
 
 	window.Asc.plugin.init = function (text) {
@@ -67,7 +72,7 @@
 		// }
 	};
 
-	
+
 
 	window.Asc.plugin.button = function () {
 		this.executeCommand("close", "");
