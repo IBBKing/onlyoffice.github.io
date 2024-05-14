@@ -30,7 +30,7 @@
 		// var oTextForm = { "key": "EntName", "tip": "请输入内容", "placeholder": "海康威视", "multiLine": false, "autoFit": true };
 		// oDocument.InsertTextForm(oTextForm)
 		var sScript = "var oDocument = Api.GetDocument();";
-		sScript += "var oTextForm = { 'key': 'EntName', 'tip': \'" + value + "\', 'placeholder': '请输入', 'multiLine': false, 'autoFit': true };";
+		sScript += "var oTextForm = { 'key': 'EntName', 'tip': \'" + "请输入" + value + "\', 'placeholder': '请输入" + value + "', 'multiLine': false, 'autoFit': true };";
 		sScript += "oDocument.InsertTextForm(oTextForm);";
 		window.Asc.plugin.info.recalculate = true;
 		window.Asc.plugin.executeCommand("command", sScript);
