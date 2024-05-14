@@ -38,10 +38,6 @@
 					const matches = [];
 					const regex1 = /([a-zA-Z\u4e00-\u9fa5]+[\u3002\uff1a\uff1b\uff0c\u201c\u201d\uff1f\u201a\u2018\u201b:,;?!"](?=[^a-zA-Z\u4e00-\u9fa5\pL\p{sc=Han}]|$)|[\u3002\uff1a\uff1b\uff0c\u201c\u201d\uff1f\u201a\u2018\u201b:,;?!"]\b[^a-zA-Z\u4e00-\u9fa5\pL\p{sc=Han}]+)(?:[^a-zA-Z\u4e00-\u9fa5\pL\p{sc=Han}]|$){0,10}/g;
 					const regex2 = /_{6,}(?=\s|$)(?![\S_])/g;
-
-
-
-
 					let match;
 
 					// 规则1: 中英文标点符号后的位置没有在十个字符内出现中英文的字符
