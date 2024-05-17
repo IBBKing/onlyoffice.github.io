@@ -1,0 +1,26 @@
+{
+    "name" : "标书检查",
+    "guid" : "asc.{CAC11982-DEAE-6CFE-A8FB-6DBD20432191}",
+
+    "variations" : [
+        {
+            "description" : "标书检查",
+            "url"         : "index.html",
+
+            "icons"           : ["resources/img/icon.png", "resources/img/icon@2x.png"],
+            "isViewer"        : false,
+            "EditorsSupport"  : ["word"],
+
+            "isVisual"        : true,
+            "isModal"         : false,
+            "isInsideMode"    : true,
+						"isSystem"        : true,
+            "initDataType"    : "none",
+            "initData"        : "",
+
+            "isUpdateOleOnResize" : false,
+
+            "buttons"        : [ ]
+        }
+    ]
+}

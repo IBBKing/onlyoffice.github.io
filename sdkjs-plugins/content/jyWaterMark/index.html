@@ -1,0 +1,204 @@
+<!--
+ (c) Copyright Ascensio System SIA 2020
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ -->
+<!DOCTYPE html>
+<html style="height: 100%">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>简蚁添加水印</title>
+    <script type="text/javascript">
+      window.YT = null;
+    </script>
+    <script
+      type="text/javascript"
+      src="https://office-dev.jianyiqifu.com/0.0.0-0/sdkjs-plugins/v1/plugins.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://office-dev.jianyiqifu.com/0.0.0-0/sdkjs-plugins/v1/plugins-ui.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://office-dev.jianyiqifu.com/0.0.0-0/sdkjs-plugins/v1/plugins.css"
+    />
+    <script src="vendor/jQuery-2.2.2-min/jquery-v2.2.2-min.js"></script>
+    <script type="text/javascript" src="scripts/code.js"></script>
+    <style>
+      .input_error {
+        display: none;
+        float: left;
+        position: relative;
+      }
+
+      .input_error:before {
+        content: "";
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        width: 16px;
+        height: 16px;
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAACvSURBVDhPrZNRDoIwEER7COA6HgJPpAnHM4oXQdFE/VDfNrsfpQvGhkneT2dmky40rK77pq6ggx4eyhF2UGnMF4EWBvjMcIFW46nEgLcGl5BMOoSDGmR6EjZNz0GyjdbjALlfFjR5HnRajwNkSVnI5HnQaz0OkE1nIZPnwVPrxQNGrc9f4Qcnra+zxAbKP6OIg/IfyYSxhasGPcTzyyYC9pjO8IIbHGAPy4/pf4XwBSVejZ5wzd0zAAAAAElFTkSuQmCC);
+      }
+      #uploadFile {
+        margin: 10px 0;
+        width: 100%;
+        height: 60px;
+        background: none;
+        border: 1px dashed #ccc;
+        color: #ccc;
+        cursor: pointer;
+      }
+      .defaultlable {
+        font-weight: 600;
+      }
+			.file-name{
+				margin-bottom: 5px;
+			}
+      .water-container {
+        width: 100%;
+        height: 400px;
+        overflow-y: auto;
+      }
+      .water-flex {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .water-content {
+        width: calc(100% - 40px);
+        margin: 0 20px;
+      }
+      .water-name {
+        width: 100%;
+      }
+			.name-label{
+				width: 55px;
+			}
+			.name-unit{
+				width: 20px;
+			}
+      .water-common {
+        margin: 10px 0;
+      }
+      .water-name-inp {
+        flex: 1;
+      }
+			.water-tips{
+				padding-left: 10px;
+			}
+			.water-radio{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+    </style>
+  </head>
+  <body>
+    <div class="water-container">
+      <div id="td_labelUrl" class="defaultlable">上传文件</div>
+      <div>
+        <div>
+          <button id="uploadFile">点击上传文件</button>
+          <input
+            style="display: none"
+            type="file"
+            id="waterFile"
+            accept=".pdf,.ppt,.pptx"
+          />
+        </div>
+				<div id="fileNamId" class="file-name"></div>
+      </div>
+      <div class="water-flex">
+        <input id="fileAddWaterMask" type="checkbox" checked />
+        <span>为文件添加水印</span>
+      </div>
+      <div class="water-content">
+				<div class="water-flex water-name water-common">
+          <span>水印类型：</span>
+					<div class="water-radio">
+						<div class="water-flex">
+							<input type="radio" name="style" value="1" checked />
+							<span>文字</span>
+						</div>
+						<div class="water-flex">
+							<input type="radio" name="style" value="2" />
+							<span>图片</span>
+						</div>
+					</div>
+        </div>
+        <div class="water-flex water-name water-common">
+          <span>水印名称：</span>
+          <input id="waterTextValue" type="text" class="water-name-inp" value="" />
+        </div>
+        <div class="water-flex water-name water-common">
+          <span>字体大小：</span>
+          <select name="lang_combo" class="water-name-inp" id="fontsize-select">
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
+						<option value="20">20</option>
+            <option value="22">22</option>
+            <option value="24">24</option>
+          </select>
+        </div>
+				<div id="waterPic" class="water-flex water-name water-common" style="display: none;">
+          <span>水印图片：</span>
+					<button id="uploadImage">选择图片</button>
+          <input
+            style="display: none"
+            type="file"
+            id="waterImage"
+            accept="image/jpeg,image/png"
+          />
+					<span id="waterImageId" class="water-tips">支持jpg/png，且不超过500kb</span>
+        </div>
+				<div class="water-flex water-name water-common">
+          <span>水印样式：</span>
+					<div class="water-radio">
+						<div class="water-flex">
+							<input type="radio" name="layout" value="0" checked />
+							<span>居中</span>
+						</div>
+						<div class="water-flex">
+							<input type="radio" name="layout" value="1" />
+							<span>平铺</span>
+						</div>
+					</div>
+        </div>
+				<div class="water-flex water-name water-common">
+          <div class="name-label">旋转：</div>
+          <input id="rotate" type="text" class="water-name-inp" value="45"/>
+					<div class="name-unit">°</div>
+        </div>
+				<div class="water-flex water-name water-common">
+          <div class="name-label">透明度：</div>
+          <input id="transparency" type="text" class="water-name-inp" value="0.6"/>
+					<div class="name-unit">%</div>
+        </div>
+				<!-- <div class="water-flex water-name water-common">
+          <div class="name-label">上边距：</div>
+          <input id="topMargin" type="text" class="water-name-inp" value="0"/>
+					<div class="name-unit">%</div>
+        </div>
+				<div class="water-flex water-name water-common">
+          <div class="name-label">左边距：</div>
+          <input id="leftMargin" type="text" class="water-name-inp" value="0"/>
+					<div class="name-unit">%</div>
+        </div> -->
+      </div>
+    </div>
+  </body>
+</html>
